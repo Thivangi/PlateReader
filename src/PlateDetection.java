@@ -6,7 +6,7 @@ import com.openalpr.jni.AlprResults;
 public class PlateDetection {
 
     public static String readPlate(String imagedata) throws Exception {
-        String country = "br", configfile = "C:/Users/GENESYS/Documents/NetBeansProjects/PlateReader/src/openalpr.conf", runtimeDataDir = "C:/Users/GENESYS/Documents/NetBeansProjects/PlateReader/src/runtime_data";
+        String country = "br", configfile = "src/openalpr.conf", runtimeDataDir = "src/runtime_data";
 
         Alpr alpr = new Alpr(country, configfile, runtimeDataDir);
 
