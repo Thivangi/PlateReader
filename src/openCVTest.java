@@ -21,28 +21,35 @@ public class openCVTest {
     public static void main(String[] args) throws IOException {
 
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-        VideoCapture camera = new VideoCapture("http://138.118.33.201/mjpg/video.mjpg?timestamp=1535125345478");
+        while(true){
+            String url = "http://138.118.33.201/mjpg/video.mjpg?timestamp=1535125345478";
+            VideoCapture camera = new VideoCapture(url);
+            String path = "resultados/";
 
-        if (camera.isOpened()) {
-            System.out.println("Video is captured");
-        } else {
-            System.out.println("");
+            if (camera.isOpened()) {
+                System.out.println("Video is captured");
+            } else {
+                System.out.println("Video closed");
+            }
+
+            videoCamera cam = new videoCamera(camera);
+            JFrame frame = new JFrame();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.add(cam);
+            
+
+            if(camera.isOpened()){
+                frame.setSize(800, 600);
+                frame.setVisible(true);
+                ThreadDetection thread = new ThreadDetection(url, path);
+                thread.start();
+                while (camera.isOpened()) {
+                    cam.repaint();
+                }
+                frame.setVisible(false);
+                System.out.println("Stop video stream!");
+            }
+            System.out.println("Reintentando...");
         }
-        videoCamera cam = new videoCamera(camera);
-        JLabel label = new JLabel();
-        label.contains(1000, 100);
-        label.setText("PATENTE:");
-        JFrame frame = new JFrame();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(cam);
-        //frame.add(label);
-        frame.setSize(1280, 720);
-        frame.setVisible(true);
-
-        while (camera.isOpened()) {
-            cam.repaint();
-        }
-
     }
-
 }

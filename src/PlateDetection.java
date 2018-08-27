@@ -1,6 +1,4 @@
 import com.openalpr.jni.Alpr;
-import com.openalpr.jni.AlprPlate;
-import com.openalpr.jni.AlprPlateResult;
 import com.openalpr.jni.AlprResults;
 
 public class PlateDetection {
@@ -15,17 +13,6 @@ public class PlateDetection {
         AlprResults results = alpr.recognize(imagedata);  
         alpr.unload();
         return results.getPlates().get(0).getTopNPlates().get(0).getCharacters() + " - " + results.getPlates().get(0).getTopNPlates().get(0).getOverallConfidence();
-//        for (AlprPlateResult result : results.getPlates())
-//        {
-//            for (AlprPlate plate : result.getTopNPlates()) {
-//                if (plate.isMatchesTemplate())
-//                    System.out.print("  * ");
-//                else
-//                    System.out.print("  - ");
-//                System.out.format("%-15s%-8f\n", plate.getCharacters(), plate.getOverallConfidence());
-//            }
-//        }
-        // Make sure to call this to release memory
         
     }
 }

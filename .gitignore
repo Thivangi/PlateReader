@@ -2,3 +2,6 @@
 /build/
 *.log
 nbproject/private/private.properties
+nbproject/private/private.properties
+nbproject/private/private.xml
+resultados/*
